@@ -14,11 +14,14 @@ def index(request):
 
 
 def products(request):
-    with open('products/fixtures/products.json', 'r') as fp:
+    with open('products/fixtures/products.json', 'r', encoding='utf-8') as fp:
         items = json.load(fp)
     context = {
         'items': items,
+        'h1_heading': 'GeekShop',
         'title': 'GeekShop - Каталог',
-        'groups': ['Новинки', 'Одежда', 'Обувь', 'Аксессуары', 'Подарки']
+        'groups': [{'name': 'Новинки', 'href': '#'}, {'name': 'Одежда', 'href': '#'},
+                   {'name': 'Обувь', 'href': '#'}, {'name': 'Аксессуары', 'href': '#'},
+                   {'name': 'Подарки', 'href': '#'}]
     }
     return render(request, 'products/products.html', context)
