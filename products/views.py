@@ -5,7 +5,7 @@ from products.models import Product, ProductCategory
 
 def index(request):
     context = {
-        'title': Product,
+        'title': 'GeekShop',
         'h1_heading': 'GeekShop Store',
         'description': 'Новые образы и лучшие бренды на GeekShop Store.\n'
                        'Бесплатная доставка по всему миру! Аутлет: до -70% Собственный бренд. -20% новым покупателям.',
