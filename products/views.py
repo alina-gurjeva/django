@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import json
+from products.models import Product, ProductCategory
 
 
 def index(request):
@@ -14,14 +15,15 @@ def index(request):
 
 
 def products(request):
-    with open('products/fixtures/products.json', 'r', encoding='utf-8') as fp:
-        items = json.load(fp)
+
     context = {
-        'items': items,
+        'items': Product.objects.all(),
         'h1_heading': 'GeekShop',
         'title': 'GeekShop - Каталог',
-        'groups': [{'name': 'Новинки', 'href': '#'}, {'name': 'Одежда', 'href': '#'},
-                   {'name': 'Обувь', 'href': '#'}, {'name': 'Аксессуары', 'href': '#'},
-                   {'name': 'Подарки', 'href': '#'}]
+        'groups': ProductCategory.objects.all()
     }
+
+    # [{'name': 'Новинки', 'href': '#'}, {'name': 'Одежда', 'href': '#'},
+    #  {'name': 'Обувь', 'href': '#'}, {'name': 'Аксессуары', 'href': '#'},
+    #  {'name': 'Подарки', 'href': '#'}]
     return render(request, 'products/products.html', context)
